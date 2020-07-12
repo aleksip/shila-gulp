@@ -1,0 +1,84 @@
+################################################################################
+# Browsersync
+################################################################################
+browsersync:
+
+  # Set to the key under options you want to use. Useful for quickly switching
+  # between proxy and server mode and other possible configurations.
+  use: proxy
+
+  # See https://www.browsersync.io/docs/options
+  options:
+
+    # Options for proxy mode.
+    proxy:
+      proxy:
+        # This is the value that usually needs to be changed for every project,
+        # unless development is done in Pattern Lab only.
+        target: 'theme.shila.test'
+        # Setting a different host in the request headers can be useful in some
+        # setups.
+        #reqHeaders:
+        #  host: ''
+      open: false
+
+    # Options for server mode.
+    server:
+      server:
+        baseDir: './public'
+      open: false
+
+  watch:
+    # If these files are changed, Browsersync will stream them to the browser.
+    stream:
+      - '../../global/css/**/*.css'
+      - '../../components/**/*.css'
+    # If these files are changed, Browsersync will reload the page.
+    reload:
+      - '../../global/js/**/*.js'
+      - '../../components/**/*.js'
+      - '../../components/**/*.twig'
+      - '../../templates/**/*.twig'
+
+
+################################################################################
+# Sass
+################################################################################
+sass:
+
+  files:
+    global:
+      - '../../global/sass/**/*.scss'
+    components:
+      - '../../components/**/*.scss'
+
+  lint:
+
+    # See https://github.com/olegskl/gulp-stylelint#options
+    options:
+      failAfterError: false
+      reporters:
+        - formatter: string
+          console: true
+
+  compile:
+    dest:
+      global: '../../global/css'
+      components: '../../components'
+
+    # See https://github.com/sass/node-sass#options
+    options:
+      includePaths:
+        - './node_modules/shila-css/sass'
+        - './node_modules/breakpoint-sass/stylesheets'
+      outputStyle: 'expanded'
+
+  watch:
+    global:
+      - '../../global/sass/**/*.scss'
+      # Include component Sass partials.
+      - '../../components/**/_*.scss'
+    components:
+      - '../../components/**/*.scss'
+      # Ignore Sass partials.
+      - '!../../components/**/_*.scss'
