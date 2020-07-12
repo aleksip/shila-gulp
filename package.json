@@ -1,6 +1,6 @@
 {
   "name": "shila-gulp",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Gulp tasks and helper functions for web development",
   "license": "GPL-2.0-or-later",
   "repository": {
