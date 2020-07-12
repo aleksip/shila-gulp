@@ -14,10 +14,10 @@ module.exports = (gulp, gulpfileExports, config) => {
   };
 
   if (config.browsersync) {
-    require('./lib/browsersync.js')(gulp, gulpfileExports, config, mainTasks);
+    require('./lib/browsersync.js')(gulp, gulpfileExports, config.browsersync, mainTasks);
   }
   if (config.sass) {
-    require('./lib/sass.js')(gulp, gulpfileExports, config, mainTasks);
+    require('./lib/sass.js')(gulp, gulpfileExports, config.sass, mainTasks);
   }
 
   gulpfileExports.lint = gulp.parallel(mainTasks.lint);
