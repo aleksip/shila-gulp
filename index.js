@@ -1,16 +1,10 @@
 'use strict';
 
-module.exports = function(gulp, gulpfileExports, config) {
+module.exports = (gulp, gulpfileExports, config) => {
+  const helpers = require('./lib/helpers.js');
+
   if (!config) {
-    try {
-      const yaml = require('js-yaml');
-      const fs = require('fs');
-      config = yaml.safeLoad(
-        fs.readFileSync('./shila-gulp-config.yml', 'utf8'));
-    }
-    catch (e) {
-      return;
-    }
+    config = helpers.loadConfig();
   }
 
   let mainTasks = {
@@ -31,4 +25,9 @@ module.exports = function(gulp, gulpfileExports, config) {
   gulpfileExports.watch = gulp.parallel(mainTasks.watch);
   gulpfileExports.default = gulp.series(
     gulpfileExports.lint, gulpfileExports.build, gulpfileExports.watch);
+
+  return {
+    config: config,
+    helpers: helpers
+  }
 };
